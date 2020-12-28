@@ -38,9 +38,9 @@ class Message(db.Model):
         return name
 
     def set_recipient_hash(self, recipient):
-        self.recipient_hash = simple_hash(recipient, restore=False)
+        self.recipient_hash = self.simple_hash(recipient, False)
     
     def restore_recipient_name(self):
-        return simple_hash(recipient_hash, restore=True)
+        return self.simple_hash(self.recipient_hash, True)
 
 

@@ -5,22 +5,20 @@ from app import db
 from app.main.forms import MessageForm
 from app.models import User, Message
 from app.main import bp
-import random
-import os
 
-@bp.route('/')
-@bp.route('/index')
+@bp.route('/', methods={'GET','POST'})
+@bp.route('/index', methods={'GET','POST'})
 def index():
     form = MessageForm()
     if form.validate_on_submit():
         message = Message(body=form.Message.data)
-        message.set_recipient_hash(form.Recipient.data)
+        #message.set_recipient_hash(form.Recipient.data)
         db.session.add(message)
         db.session.commit()
         flash("Your message has been posted!")
-        return render_template('index.html', form = form)
+        return render_template('submission.html', form=form)
     
-    return render_template('index.html', form = form)
+    return render_template('index.html', form=form)
 
 @bp.route('/display/<message_id>/<recipient_hash>')
 def display_message(message_id, recipient_hash):
