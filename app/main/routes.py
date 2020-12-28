@@ -11,12 +11,13 @@ from app.main import bp
 def index():
     form = MessageForm()
     if form.validate_on_submit():
-        message = Message(body=form.Message.data, recepient_hash = form.Recipient)
+        message = Message(body=form.Message.data)
         #message.set_recipient_hash(form.Recipient.data)
         db.session.add(message)
         db.session.commit()
+        link = "iGreet.com/"+str(10)
         flash("Your message has been posted!")
-        return render_template('submission.html', form=form)
+        return render_template('submission.html', link=link)
     
     return render_template('index.html', form=form)
 
