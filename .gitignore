@@ -3,4 +3,5 @@
 .vscode/
 /data/
 logs/
+migrations/
 .flaskenv
