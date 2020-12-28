@@ -11,7 +11,7 @@ from app.main import bp
 def index():
     form = MessageForm()
     if form.validate_on_submit():
-        message = Message(body=form.Message.data)
+        message = Message(body=form.Message.data, recepient_hash = form.Recipient)
         #message.set_recipient_hash(form.Recipient.data)
         db.session.add(message)
         db.session.commit()
