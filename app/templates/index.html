@@ -59,15 +59,15 @@
                         <form action="" method="post">
                         {{ form.hidden_tag() }}
                         <!-- Jinja Form for message input-->
-                        <p class="text-white-50 mb-4"> {{ form.Message.label }} </p><br>
-                        {{ form.Message(size=256) }} <br>
-                        <!-- Jinja Form for message recipient-->
-                        <p class="text-white-50 mb-4"> {{ form.Message.label }} </p><br>
+                        <p class="text-white-50 mb-4"> {{ form.Message.label }} <br>
                         {{ form.Message(size=256) }}
-                        <br>
-                        <br>
+                        </p>
+                        <!-- Jinja Form for message recipient-->
+                        <p class="text-white-50 mb-4"> {{ form.Recipient.label }} <br>
+                            {{ form.Recipient(size=32) }}
+                        </p>
                         <!-- Jinja Form for Launch button-->
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">{{ form.submit() }}</a>
+                        {{form.submit()}}
                         </form>
 
                     </div>

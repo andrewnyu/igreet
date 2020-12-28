@@ -5,7 +5,7 @@ from wtforms.validators import ValidationError, DataRequired
 from app.models import User
 
 class MessageForm(FlaskForm):
-    Message = TextAreaField('')
-    Recepient = TextAreaField('')
+    Message = TextAreaField('Message', render_kw={"rows": 11, "cols": 60})
+    Recipient = StringField('Recepient')
     submit = SubmitField('Send')
 
