@@ -25,9 +25,10 @@ class User(UserMixin, db.Model):
         return '<User {}>'.format(self.username)
 
 class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256))
-    message_id = db.Column(db.Integer, primary_key=True)
     recipient_hash = db.Column(db.String(64))
+    
 
     def simple_hash(name, restore=False):
         #Simple hash for masking recipient name in url string
@@ -36,7 +37,10 @@ class Message(db.Model):
             name[i] = chr(ord(name[i])+restore)
         return name
 
-    def set_recipient_hash(self, recipient, restore=False):
-        self.recipient_hash = simple_hash(recipient, restore)
+    def set_recipient_hash(self, recipient):
+        self.recipient_hash = simple_hash(recipient, restore=False)
+    
+    def restore_recipient_name(self):
+        return simple_hash(recipient_hash, restore=True)
 
 
