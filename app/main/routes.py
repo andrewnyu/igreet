@@ -28,4 +28,4 @@ def display_message(message_id, recipient_hash):
     message_body = message.body
     recipient = message.restore_recipient_name()
 
-    return redirect(url_for('main.kickoff'))
+    return render_template('message.html')
