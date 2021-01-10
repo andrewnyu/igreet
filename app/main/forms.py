@@ -9,3 +9,6 @@ class MessageForm(FlaskForm):
     Recipient = StringField('Recepient')
     submit = SubmitField('Send')
 
+class PasskeyForm(FlaskForm):
+    passkey = StringField('Password')
+
