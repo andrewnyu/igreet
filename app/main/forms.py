@@ -7,6 +7,7 @@ from app.models import User
 class MessageForm(FlaskForm):
     Message = TextAreaField('Message', render_kw={"rows": 11, "cols": 60})
     Recipient = StringField('Recepient')
+    Password = StringField('Password')
     submit = SubmitField('Send')
 
 class PasskeyForm(FlaskForm):
