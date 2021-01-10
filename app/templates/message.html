@@ -41,10 +41,10 @@
 
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5">But first, enter your password below!</p><br>
+                        <form action="" method="post">
                         <p class="text-white-50 mb-4"> {{ form.passkey.label }} <br>
                             {{ form.passkey(size=32) }}
                         </p>
-                        <form action="" method="post">
                         {{ form.hidden_tag() }}
                         {{ form.submit(class = "btn btn-primary btn-xl js-scroll-trigger") }}
                         </form>
