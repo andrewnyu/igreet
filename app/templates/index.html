@@ -66,6 +66,10 @@
                         <p class="text-white-50 mb-4"> {{ form.Recipient.label }} <br>
                             {{ form.Recipient(size=32) }}
                         </p>
+                        <!-- Jinja Form for message password-->
+                        <p class="text-white-50 mb-4"> {{ form.Password.label }} <br>
+                            {{ form.Password(size=32) }}
+                        </p>
                         <!-- Jinja Form for Launch button-->
                         {{form.submit()}}
                         </form>
