@@ -27,26 +27,12 @@ class User(UserMixin, db.Model):
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256))
-    recipient_hash = db.Column(db.String(64))
+    recipient = db.Column(db.String(64))
     passkey_hash = db.Column(db.String(64))
 
     def set_passkey(self, password):
         self.passkey_hash = generate_password_hash(password)
     def check_passkey(self, password):
         return check_password_hash(self.passkey_hash, password)
-    
-
-    def simple_hash(name, restore=False):
-        #Simple hash for masking recipient name in url string
-        dir = 1 if restore else -1
-        for i in range(len(name)):
-            name[i] = chr(ord(name[i])+restore)
-        return name
-
-    def set_recipient_hash(self, recipient):
-        self.recipient_hash = self.simple_hash(recipient, False)
-    
-    def restore_recipient_name(self):
-        return self.simple_hash(self.recipient_hash, True)
 
 
