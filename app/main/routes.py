@@ -11,8 +11,9 @@ from app.main import bp
 def index():
     form = MessageForm()
     if form.validate_on_submit():
-        message = Message(body=form.Message.data)
-        #message.set_recipient_hash(form.Recipient.data)
+        message = Message(body=form.Message.data, recipient=form.Recipient.data)
+        message.set_passkey(form.Password.data)
+
         db.session.add(message)
         db.session.commit()
         link = "iGreet.com/"+str(10)
@@ -23,19 +24,22 @@ def index():
 
 @bp.route('/display/<message_id>', methods={'GET','POST'})
 def display_message(message_id):
-    #message = Message.query.get(int(message_id))
-    #message_body = message.body
-    #recipient = message.restore_recipient_name()
+    message = Message.query.get(int(message_id))
+    message_body = message.body
+    recipient = message.recipient
     form = PasskeyForm()
 
     if form.validate_on_submit():
         passkey = form.passkey.data
-        #validated = message.check_passkey(passkey)
-        validated = True
+        validated = message.check_passkey(passkey)
+
+        import sys
+        print(passkey, file=sys.stderr)
+        
 
         if validated:
-            return render_template('message.html', validated=True, name='Linte', message_body='placeholder')
+            return render_template('message.html', validated=True, name=recipient, message_body=message_body)
         else:
-            return render_template('message.html', form=form, validated=False, name='Linte')
+            return render_template('message.html', form=form, validated=False, name=recipient)
 
-    return render_template('message.html', form=form, validated=False, name='Linte')
+    return render_template('message.html', form=form, validated=False, name=recipient)
