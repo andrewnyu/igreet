@@ -16,7 +16,9 @@ def index():
 
         db.session.add(message)
         db.session.commit()
-        link = "iGreet.com/"+str(10)
+
+        id = Message.query.count()
+        link = "igreet.live/display/"+str(id)
         flash("Your message has been posted!")
         return render_template('submission.html', link=link)
     
