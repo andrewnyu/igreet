@@ -28,7 +28,7 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256))
     recipient = db.Column(db.String(64))
-    passkey_hash = db.Column(db.String(64))
+    passkey_hash = db.Column(db.String(128))
 
     def set_passkey(self, password):
         self.passkey_hash = generate_password_hash(password)
