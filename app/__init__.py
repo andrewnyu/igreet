@@ -18,6 +18,9 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+    #special workaround to allow emojis in connection
+    app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
+
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
