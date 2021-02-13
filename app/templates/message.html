@@ -5,7 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        {% if name  %}
         <title>{{name}}, someone sent you a message!</title>
+        {% else %}
+        <title>Someone sent you a message!</title>
+        {% endif %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='startbootstrap-creative-master/dist/assets/img/favicon.ico') }}" />
         <!-- Font Awesome icons (free version)-->
@@ -35,7 +39,11 @@
                     <!-- Require password input-->
                     {% if not validated %}
                     <div class="col-lg-10 align-self-end">
+                        {% if name  %}
                         <h1 class="text-white-75 font-weight-light mb-5">{{name}}, someone sent you a message!</h1>
+                        {% else %}
+                        <h1 class="text-white-75 font-weight-light mb-5">Someone sent you a message!</h1>
+                        {% endif %}
                         <hr class="divider my-4" />
                     </div>
 
@@ -53,7 +61,9 @@
                     <!-- Password not needed or already given. Show content-->
                     {% else %}
                     <div class="col-lg-10 align-self-end">
+                        {% if name  %}
                         <h1 class="text-white-75 font-weight-light mb-5">Dear {{name}}</h1>
+                        {% endif %}
                         <hr class="divider my-4" />
                     </div>
 
