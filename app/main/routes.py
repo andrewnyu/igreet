@@ -34,10 +34,16 @@ def display_message(message_id,url_mask):
     #Split url argument to take relevant parts
 
     message = Message.query.get(int(message_id))
-    message_body = message.body
-    message_url_mask = message.url_mask
-    recipient = message.recipient
-    form = PasskeyForm()
+
+    #Add account for invalid IDs
+    if message is None:
+        return render_template('404.html', link=None)
+    else:
+        message_body = message.body
+        message_url_mask = message.url_mask
+        recipient = message.recipient
+        form = PasskeyForm()
+
 
     if form.validate_on_submit():
         passkey = form.passkey.data
@@ -55,4 +61,4 @@ def display_message(message_id,url_mask):
     if url_mask == message_url_mask:
         return render_template('message.html', form=form, validated=False, name=recipient)
     else:
-        return render_template('404.html')
+        return render_template('404.html', link=None)
