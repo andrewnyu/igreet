@@ -29,6 +29,7 @@ class Message(db.Model):
     body = db.Column(db.String(256))
     recipient = db.Column(db.String(64))
     passkey_hash = db.Column(db.String(128))
+    url_mask = db.Column(db.String(64))
 
     def set_passkey(self, password):
         self.passkey_hash = generate_password_hash(password)
