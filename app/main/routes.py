@@ -22,11 +22,8 @@ def index():
         db.session.commit()
 
         id = db.session.query(func.max(Message.id)).scalar()
-<<<<<<< HEAD
-        link = "igreet.live/display/"+str(id)
-=======
+
         link = "igreet.live/display/"+str(id)+"/"+url_mask
->>>>>>> 69f51f20cea60d424f6e489a50a9402204dbcc45
         flash("Your message has been posted!")
         return render_template('submission.html', link=link)
     
