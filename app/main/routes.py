@@ -5,6 +5,7 @@ from app import db
 from app.main.forms import MessageForm, PasskeyForm
 from app.models import User, Message
 from app.main import bp
+from sqlalchemy import func
 
 @bp.route('/', methods={'GET','POST'})
 @bp.route('/index', methods={'GET','POST'})
@@ -17,7 +18,7 @@ def index():
         db.session.add(message)
         db.session.commit()
 
-        id = Message.query.count()
+        id = db.session.query(func.max(Message.id)).scalar()
         link = "igreet.live/display/"+str(id)
         flash("Your message has been posted!")
         return render_template('submission.html', link=link)
